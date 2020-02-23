@@ -34,13 +34,22 @@ public class LicenseServiceController {
 	public License getLicense(
 			@PathVariable("organizationId") String organizationId, 
 			@PathVariable("licenseId") String licenseId) {
-		return licenseService.getLicense(organizationId, licenseId);
+		return licenseService.getLicense(organizationId, licenseId, "");
+	}
+	
+	@GetMapping("/{licenseId}/{clientType}")
+	public License getLicenseWithClient(
+			@PathVariable("organizationId") String organizationId,
+			@PathVariable("licenseId") String licenseId,
+			@PathVariable("clientType") String clientType) {
+		return licenseService.getLicense(organizationId, licenseId, clientType);
 	}
 	
 	@PutMapping("{licenseId}")
-	public String updateLicenses(
-			@PathVariable("licenseId") String licensed) {
-		return String.format("This is the put");
+	public void updateLicenses(
+			@PathVariable("licenseId") String licenseId,
+			@RequestBody License license) {
+		licenseService.updateLicense(license);
 	}
 	
 	@PostMapping("{licenseId}")

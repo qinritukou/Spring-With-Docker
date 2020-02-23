@@ -8,6 +8,6 @@ spring:
     config:
       server:
         native:
-          searchLocations: file:////Users/qinritukou/Documents/GitHub/Spring-With-Docker/confsvr/src/main/resources/config/licensingservice
+          searchLocations: file:////Users/qinritukou/Documents/GitHub/Spring-With-Docker/confsvr/src/main/resources/config/licensingservice,file:////Users/qinritukou/Documents/GitHub/Spring-With-Docker/confsvr/src/main/resources/config/organizationservice
           
           
