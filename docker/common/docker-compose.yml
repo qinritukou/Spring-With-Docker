@@ -4,14 +4,14 @@ services:
         image: orangeman/confsvr:chapter3
         ports:
             - "8888:8888"
-    database:
-        image: postgres:9.5
-        ports:
-            - "5432:5432"
-        environment:
-            POSTGRES_USER: "postgres"
-            POSTGRES_PASSWORD: "postgres"
-            POSTGRES_DB:       "eagle_eye_local"
+    # database:
+    #     image: postgres:9.5
+    #     ports:
+    #         - "5432:5432"
+    #     environment:
+    #         POSTGRES_USER: "postgres"
+    #         POSTGRES_PASSWORD: "postgres"
+    #         POSTGRES_DB:       "eagle_eye_local"
     licensingservice:
         image: orangeman/licensing-service:chapter2
         ports:
