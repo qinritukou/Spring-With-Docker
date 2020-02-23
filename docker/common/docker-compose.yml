@@ -1,6 +1,24 @@
 version: '2'
 services: 
+    configserver:
+        image: orangeman/confsvr:chapter3
+        ports:
+            - "8888:8888"
+    database:
+        image: postgres:9.5
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "postgres"
+            POSTGRES_DB:       "eagle_eye_local"
     licensingservice:
-        image: orangeman/tmx-licensing-service:chapter2
+        image: orangeman/licensing-service:chapter2
         ports:
             - "8080:8080"
+        environment:
+            PROFILE: "default"
+            CONFIGSERVER_URI: "http://localhost:8888/licensingservice"
+            CONFIGSERVER_PORT:   "8888"
+            DATABASESERVER_PORT: "5432"
+            ENCRYPT_KEY:       "IMSYMMETRIC"
