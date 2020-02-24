@@ -11,7 +11,7 @@
 	<groupId>com.orangeman.example</groupId>
 	<artifactId>licensing-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EagleEye Licensing Service</name>
+	<name>Licensing Service</name>
 	<description>Licensing Service</description>
 
 	<properties>
