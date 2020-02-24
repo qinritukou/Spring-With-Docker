@@ -1,11 +1,15 @@
 package com.orangeman.example.licensingservice.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.orangeman.example.licensingservice.clients.OrganizationDiscoveryClient;
 import com.orangeman.example.licensingservice.clients.OrganizationFeignClient;
 import com.orangeman.example.licensingservice.clients.OrganizationRestTemplateClient;
@@ -71,9 +75,52 @@ public class LicenseService {
 		return license;
 	}
 	
+	private void randomlyRunLong() {
+		Random rand = new Random();
+		int randomNum = rand.nextInt((3 - 1) + 1) + 1;
+		
+		if (randomNum == 3) sleep();
+	}
+	
 
+	private void sleep() {
+		// TODO Auto-generated method stub
+		try {
+			Thread.sleep(1100);
+		} catch (InterruptedException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	private List<License> buildFallbackLicenseList(String organizationId) {
+		List<License> fallbackList = new ArrayList<>();
+		License license = new License()
+				.withLicenseId("0000000000-0000000")
+				.withOrganizationId(organizationId)
+				.withProductName("Sorry no licesing information currently available");
+		
+		fallbackList.add(license);
+		return fallbackList;
+	}
+
+
+	@HystrixCommand(
+			commandProperties = {
+					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value="1200"),
+					@HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE")
+			},
+			fallbackMethod = "buildFallbackLicenseList",
+			// some thread pool configuration
+			threadPoolKey = "licenseByOrgThreadPool",
+			threadPoolProperties = {
+					@HystrixProperty(name = "coreSize", value = "30"),
+					@HystrixProperty(name = "maxQueueSize", value = "10")
+			}
+			)
 	public List<License> getLicensesByOrg(String organizationId) {
 		// TODO Auto-generated method stub
+		randomlyRunLong();
 		return licenseRepository.findByOrganizationId(organizationId);
 	}
 
