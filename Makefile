@@ -14,3 +14,6 @@ cui_test:
 	curl -XGET http://localhost:8080/health
 	curl -XGET http://localhost:8888/licensingservice/default
 	curl -XGET http://localhost:8080/v1/organizations/e254f8c-c442-4ebe-a82a-e2fc1d1ff78a/licenses/
+	curl -XGET -H 'tmx-correlation-id:TEST-CORRELATION-ID' http://localhost:8080/v1/organizations/e254f8c-c442-4ebe-a82a-e2fc1d1ff78a/licenses/
+	curl -XGET http://localhost:8082/v1/route/abtesting/organizationservice
+	curl -XGET http://localhost:5555/api/licensingservice/v1/organizations/e254f8c-c442-4ebe-a82a-e2fc1d1ff78a/licenses/

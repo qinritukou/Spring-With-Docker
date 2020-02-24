@@ -1,0 +1,21 @@
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: '*'
+server:
+  port: 5555
+spring:
+  application:
+    name: zuulsvr
+  cloud:
+    config:
+      uri: http://localhost:8888/zuulsvr
+  profiles:
+    active: default
+

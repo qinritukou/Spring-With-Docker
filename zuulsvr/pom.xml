@@ -8,21 +8,18 @@
 		<version>2.2.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-
 	<groupId>com.orangeman.example</groupId>
-	<artifactId>organization-service</artifactId>
+	<artifactId>zuulsvr</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>organization-service</name>
-	<description>Organization Service</description>
+	<name>zuulsvr</name>
+	<description>Zuul Service</description>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
-		<start-class>com.orangeman.example.organizationservice.OrganizationServiceApplication</start-class>
-		<docker.image.name>orangeman/organization-service</docker.image.name>
-		<docker.image.tag>chapter4</docker.image.tag>
-
+		<start-class>com.orangeman.example.zuulsvr.ZuulServerApplication</start-class>
+		<docker.image.name>orangeman/zuulsvr</docker.image.name>
+		<docker.image.tag>chapter6</docker.image.tag>		
 	</properties>
 
 	<dependencies>
@@ -32,11 +29,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -51,6 +48,11 @@
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
 		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		</dependency>
+				
+		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-feign</artifactId>
 		    <version>1.4.7.RELEASE</version>
@@ -59,19 +61,14 @@
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-ribbon</artifactId>
 		    <version>1.4.7.RELEASE</version>
-		</dependency>				
-		<dependency>
-		    <groupId>org.postgresql</groupId>
-		    <artifactId>postgresql</artifactId>
 		</dependency>
-				
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -137,13 +134,22 @@
 					</resources>
 				</configuration>
 			</plugin>
-			
+		
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugin</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

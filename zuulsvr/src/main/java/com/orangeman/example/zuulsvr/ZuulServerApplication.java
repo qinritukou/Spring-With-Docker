@@ -1,22 +1,21 @@
-package com.orangeman.example.licensingservice;
+package com.orangeman.example.zuulsvr;
 
 import java.util.Collections;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.web.client.RestTemplate;
 
-import com.orangeman.example.licensingservice.utils.UserContextInterceptor;
+import com.orangeman.example.zuulsvr.utils.UserContextInterceptor;
 
 @SpringBootApplication
-@EnableFeignClients
-@EnableCircuitBreaker
-public class LicensingServiceApplication {
+@EnableZuulProxy
+public class ZuulServerApplication {
+
 	
 	@Bean
 	public RestTemplate getRestTemplate() {
@@ -32,9 +31,9 @@ public class LicensingServiceApplication {
 		
 		return template;
 	}
-
+	
 	public static void main(String[] args) {
-		SpringApplication.run(LicensingServiceApplication.class, args);
+		SpringApplication.run(ZuulServerApplication.class, args);
 	}
 
 }

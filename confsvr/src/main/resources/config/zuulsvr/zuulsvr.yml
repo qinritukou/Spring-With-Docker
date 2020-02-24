@@ -1,0 +1,8 @@
+zuul.ignored-services: '*'
+zuul.prefix: /api
+zuul.routes.organizationservice: /organizationservice/**
+zuul.routes.licensingservice: /licensingservice/**
+zuul.debug.request: true
+hystrix.command.default.execution.isolocation.thread.timeoutInMilliseconds: 2500
+hystrix.command.licensingservice.execution.isolation.thread.timeoutInMillisec onds: 7000
+licensingservice.ribbon.ReadTimeout: 7000
