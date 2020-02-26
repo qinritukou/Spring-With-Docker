@@ -1,4 +1,4 @@
-package com.orangeman.example.licensingservice.utils;
+package com.orangeman.example.organizationservice.utils;
 
 import java.io.IOException;
 

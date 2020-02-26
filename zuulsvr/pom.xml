@@ -19,7 +19,7 @@
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 		<start-class>com.orangeman.example.zuulsvr.ZuulServerApplication</start-class>
 		<docker.image.name>orangeman/zuulsvr</docker.image.name>
-		<docker.image.tag>chapter6</docker.image.tag>		
+		<docker.image.tag>test</docker.image.tag>		
 	</properties>
 
 	<dependencies>

@@ -20,7 +20,7 @@
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 		<start-class>com.orangeman.example.eurekasvr.EurekaServerApplication</start-class>
 		<docker.image.name>orangeman/eurekasvr</docker.image.name>
-		<docker.image.tag>chapter4</docker.image.tag>
+		<docker.image.tag>test</docker.image.tag>
 	</properties>
 
 	<dependencies>

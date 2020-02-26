@@ -1,4 +1,4 @@
-package com.orangeman.example.licensingservice.utils;
+package com.orangeman.example.organizationservice.utils;
 
 import org.springframework.stereotype.Component;
 
@@ -14,6 +14,7 @@ public class UserContext {
 	private String authToken = new String();
 	private String userId = new String();
 	private String orgId = new String();
+	
 	public String getCorrelationId() {
 		return correlationId;
 	}

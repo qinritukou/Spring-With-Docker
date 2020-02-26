@@ -14,6 +14,14 @@ spring:
   application:
     name: licensingservice
   cloud:
+    stream:
+      input:
+        destination: orgChangeTopic
+        content-type: application/json
+        group: licensingGroup
+      binder:
+        zkNodes: localhost
+        brokers: localhost  
     config:
       uri: http://localhost:8888/licensingservice
   profiles:

@@ -14,6 +14,15 @@ spring:
   application:
     name: organizationservice
   cloud:
+    stream:
+      bindings:
+        output:
+          destination: orgChagneTopic
+          content-type: application/json
+      kafka:
+        binder:
+          zkNodes: localhost
+          brokers: localhost  
     config:
       uri: http://localhost:8888/organizationservice
   profiles:
