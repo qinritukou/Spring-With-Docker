@@ -32,8 +32,9 @@ public class OrganizationService {
 		simpleSourceBean.publishOrgChange("SAVE", org.getOrganizationId());
 	}
 	
-	public void updateOrg(Organization org) {
-		organizationRepository.save(org);
+	public Organization updateOrg(Organization org) {
+		org = organizationRepository.save(org);
+		return org;
 	}
 	
 	public void deleteOrg(Organization org) {

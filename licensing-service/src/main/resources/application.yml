@@ -9,19 +9,20 @@ management:
       exposure:
         include: '*'
 server:
-  port: 8080
+  port: 8082
 spring:
   application:
     name: licensingservice
   cloud:
     stream:
-      input:
-        destination: orgChangeTopic
-        content-type: application/json
-        group: licensingGroup
-      binder:
-        zkNodes: localhost
-        brokers: localhost  
+      bindings:        
+        inboundOrgChanges:
+          destination: orgChangeTopic
+          content-type: application/json
+          group: licensingGroup
+      kafka:
+        binder:
+          brokers: localhost  
     config:
       uri: http://localhost:8888/licensingservice
   profiles:

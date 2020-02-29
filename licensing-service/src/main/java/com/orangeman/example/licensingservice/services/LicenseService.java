@@ -121,7 +121,19 @@ public class LicenseService {
 	public List<License> getLicensesByOrg(String organizationId) {
 		// TODO Auto-generated method stub
 		randomlyRunLong();
-		return licenseRepository.findByOrganizationId(organizationId);
+		List<License> list = licenseRepository.findByOrganizationId(organizationId);
+		Organization org = retrieveOrgInfo(organizationId, "feign");
+		
+		if (list != null) {
+			list.stream().forEach(license -> {
+				license.withOrganizationName(org.getOrganizationName())
+					.withContactName(org.getContactName())
+					.withContactEmail(org.getContactEmail())
+					.withContactPhone(org.getContactPhone());
+			});			
+		}
+		
+		return list;
 	}
 
 	public void saveLicense(License license) {
